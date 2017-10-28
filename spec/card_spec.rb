@@ -16,11 +16,23 @@ describe Card do
    it 'has a rank' do
      raise unless card(rank: 4).rank == 4
    end
-   
+
    it 'is equal to a card of the same suit and rank' do
          a_card = card(suit: :spades, rank: 7)
          another_card = card(suit: :spades, rank: 7)
          raise unless a_card == another_card
+   end
+
+   it 'is not equal to a card of a different suit ' do
+         a_card = card(suit: :spades, rank: 7)
+         another_card = card(suit: :hearts, rank: 7)
+         raise unless a_card != another_card
+   end
+
+   it 'is not equal to a card of a different rank ' do
+         a_card = card(suit: :spades, rank: 7)
+         another_card = card(suit: :spades, rank: 6)
+         raise unless a_card != another_card
    end
 
    describe 'a Jack' do
