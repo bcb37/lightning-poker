@@ -1,6 +1,11 @@
 class Card
     attr_reader :suit
     attr_reader :rank
+
+    def self.build(suit, rank)
+        new(suit: suit, rank: rank)
+    end
+    private_class_method :new
     def initialize(suit:, rank:)
         @suit = suit
         @rank = case rank
