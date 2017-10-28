@@ -16,5 +16,21 @@ RSpec.describe 'a playing card' do
          raise unless a_jack.rank > a_ten.rank
       end
    end
+   
+   describe 'a Queen' do
+      it 'ranks higher than a Jack' do
+         a_queen = Card.new(suit: :spades, rank: :queen)
+         a_jack = Card.new(suit: :spades, rank: :jack)
+         raise unless a_queen.rank > a_jack.rank
+      end
+   end
+   
+   describe 'a King' do
+      it 'ranks higher than a Queen' do
+         a_king = Card.new(suit: :spades, rank: :king)
+         a_queen = Card.new(suit: :spades, rank: :queen)
+         raise unless a_king.rank > a_queen.rank
+      end
+   end
 
 end
