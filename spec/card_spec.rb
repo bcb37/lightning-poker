@@ -1,34 +1,42 @@
 require 'card.rb'
 
-RSpec.describe 'a playing card' do
+describe Card do
+   def card(params = {})
+     defaults = {
+       suit: :hearts,
+       rank: 7
+     }
+     Card.new(**defaults.merge(params))
+   end
+
    it 'has a suit' do
-      raise unless Card.new(suit: :spades, rank: 4).suit == :spades
+      raise unless card(suit: :spades).suit == :spades
    end
 
    it 'has a rank' do
-     raise unless Card.new(suit: :spades, rank: 4).rank == 4
+     raise unless card(rank: 4).rank == 4
    end
 
    describe 'a Jack' do
       it 'ranks higher than a 10' do
-         a_jack = Card.new(suit: :spades, rank: :jack)
-         a_ten = Card.new(suit: :spades, rank: 10)
+         a_jack = card(rank: :jack)
+         a_ten = card(rank: 10)
          raise unless a_jack.rank > a_ten.rank
       end
    end
-   
+
    describe 'a Queen' do
       it 'ranks higher than a Jack' do
-         a_queen = Card.new(suit: :spades, rank: :queen)
-         a_jack = Card.new(suit: :spades, rank: :jack)
+         a_queen = card(rank: :queen)
+         a_jack = card(rank: :jack)
          raise unless a_queen.rank > a_jack.rank
       end
    end
-   
+
    describe 'a King' do
       it 'ranks higher than a Queen' do
-         a_king = Card.new(suit: :spades, rank: :king)
-         a_queen = Card.new(suit: :spades, rank: :queen)
+         a_king = card(rank: :king)
+         a_queen = card(rank: :queen)
          raise unless a_king.rank > a_queen.rank
       end
    end
