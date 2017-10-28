@@ -1,3 +1,3 @@
-RSpec.configure do
+RSpec.configure do |config|
    config.warnings = true
 end
