@@ -11,30 +11,30 @@ describe Card do
    end
 
    it 'has a suit' do
-      raise unless card(suit: :spades).suit == :spades
+      expect(card(suit: :spades).suit).to eq(:spades)
    end
 
    it 'has a rank' do
-     raise unless card(rank: 4).rank == 4
+     expect(card(rank: 4).rank).to eq(4)
    end
    context 'equality' do
      subject { card(suit: :spades, rank: 7) }
      describe 'comparing against self' do
        let(:other) { card(suit: :spades, rank: 7) }
        it 'is equal' do
-          raise unless subject == other
+          expect(subject).to eq(other)
        end
        it 'is hash equal' do
-          raise unless Set.new([subject, other]).size == 1
+          expect(Set.new([subject, other]).size).to eq(1)
        end
      end
      shared_examples_for 'an unequal card' do
        it 'is not equal' do
-          raise unless subject != other
+          expect(subject).not_to eq(other)
        end
 
        it 'is not hash equal' do
-          raise unless Set.new([subject, other]).size == 2
+          expect(Set.new([subject, other]).size).to eq(2)
        end
      end
      describe 'comparing to a card of a different suit' do
@@ -51,7 +51,7 @@ describe Card do
       it 'ranks higher than a 10' do
          a_jack = card(rank: :jack)
          a_ten = card(rank: 10)
-         raise unless a_jack.rank > a_ten.rank
+         expect(a_jack.rank).to be > a_ten.rank
       end
    end
 
@@ -59,7 +59,7 @@ describe Card do
       it 'ranks higher than a Jack' do
          a_queen = card(rank: :queen)
          a_jack = card(rank: :jack)
-         raise unless a_queen.rank > a_jack.rank
+         expect(a_queen.rank).to be > a_jack.rank
       end
    end
 
@@ -67,7 +67,7 @@ describe Card do
       it 'ranks higher than a Queen' do
          a_king = card(rank: :king)
          a_queen = card(rank: :queen)
-         raise unless a_king.rank > a_queen.rank
+         expect(a_king.rank).to be > a_queen.rank
       end
    end
 
