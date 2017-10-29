@@ -21,11 +21,30 @@ class Card
     end
 
     def hash
-      [rank, suit].hash 
+      [rank, suit].hash
     end
 
     def eql?(other)
       self == other
+    end
+
+    def self.from_string(value)
+      short_suit = value[-1]
+      suit = {
+        "H" => :hearts,
+        "C" => :clubs,
+        "D" => :diamonds,
+        "S" => :spades
+      }.fetch(short_suit)
+
+      rank = {
+        "A" => :ace,
+        "K" => :king,
+        "Q" => :queen,
+        "J" => :jack
+      }.fetch(value[0]) { value[0..-2].to_i}
+
+      Card.build(suit, rank)
     end
 
 end
